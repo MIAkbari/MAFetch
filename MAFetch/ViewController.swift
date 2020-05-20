@@ -12,7 +12,21 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        self.fetchData()
+    }
+    
+    
+    func fetchData() {
+        
+        APIClient.login.fetchTodos { result in
+            switch result {
+            case .success(let model):
+                print(model)
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
     }
 
 
