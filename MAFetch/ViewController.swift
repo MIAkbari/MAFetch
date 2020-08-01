@@ -8,27 +8,26 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.fetchData()
+        self.view.backgroundColor = .red
     }
+    
     
     
     func fetchData() {
         
-        APIClient.login.fetchTodos { result in
-            switch result {
-            case .success(let model):
-                print(model)
-            case .failure(let err):
-                print(err.localizedDescription)
-            }
+        APIClient.state.state { model in
+            print("model:\(model)")
         }
+        
     }
 
-
+    
 }
-
