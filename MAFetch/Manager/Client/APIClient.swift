@@ -21,7 +21,8 @@ class FetchSettings {
 }
 
 
-public typealias Service<Response> = (_ completionHandler: @escaping (Result<Response, Error>) -> Void) -> Void
+//public typealias Service<Response> = (_ completionHandler: @escaping (Result<Response, Error>) -> Void) -> Void
+public typealias Service<Response> = (_ completionHandler: @escaping (Response) -> Void) -> Void
 
 public var reachability = NetworkReachabilityManager()
 
@@ -65,7 +66,7 @@ public struct Fetch<T> where T: Codable {
         }
     }
     
-   fileprivate func skipNetwork(completion:@escaping(Result<T, Error>)->Void) {
+   fileprivate func skipNetwork(completion:@escaping(T)->Void) {
         if reachability?.isReachable ?? true{
             self.fetchReguest { result in
                 completion(result)
@@ -81,7 +82,11 @@ public struct Fetch<T> where T: Codable {
     }
     
     
-    fileprivate func fetchReguest(completion:@escaping(Result<T, Error>)->Void) {
+    
+    
+    
+    
+    fileprivate func fetchReguest(completion:@escaping(T)->Void) {
         FetchSession.session.request(self.url, method: self.method,parameters: self.parameters, encoding:self.encoding , headers: self.headers, interceptor: nil).responseData(queue:.main) { (response: AFDataResponse<Data>) in
             guard let statusCode = response.response?.statusCode else {return}
             if statusCode == 403 || statusCode == 401{
@@ -93,7 +98,7 @@ public struct Fetch<T> where T: Codable {
                     
                     do {
                         let responseData = try JSONDecoder().decode(T.self, from: data)
-                        completion(.success(responseData))
+                        completion(responseData)
                     } catch let error {
                         let action =  UIAlertAction(title: "ok", style: .default, handler: { _ in
                             self.skipNetwork { (result) in
@@ -111,16 +116,19 @@ public struct Fetch<T> where T: Codable {
                         }
                     })
                     Alert.share.setAlertError(title: "Request Error", message: error.localizedDescription, action: [action])
-                    print("AF_Exit_One \(error)")
-                    completion(.failure(error))
+                    print("AF_Exit_Error: \(error)")
                 }
             }
+            
+            
+            
+            
         }.responseJSON(queue: .main) { response in
             
             if response.error?.errorDescription != nil {
                 let action =  UIAlertAction(title: "ok", style: .default, handler: { _ in
                     self.skipNetwork { (result) in
-                        completion(result)
+                    completion(result)
                     }
                 })
                 Alert.share.setAlertError(title: "Request Error", message: response.error?.errorDescription ?? "Empty", action: [action])

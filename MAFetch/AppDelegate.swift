@@ -8,13 +8,7 @@
 
 import UIKit
 
-/*
- add  FetchSettings
- add manager
- add FetchSession
- add reachability
- add error_alert
- */
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

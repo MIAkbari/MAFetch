@@ -9,20 +9,22 @@
 import Foundation
 
 
+
+
 extension APIClient {
     
-    class state {
+    class instance {
         
-        class func state(complation:@escaping (Welcome)->Void) {
-            APIClient.fetchState { result in
-                switch result {
-                case .success(let model):
-                    complation(model)
-                case .failure(let err):
-                    print("AF_Exit \(err)")
-                }
-            }
-        }
+//        class func state(complation:@escaping (Welcome)->Void) {
+//            APIClient.fetchState { result in
+//                switch result {
+//                case .success(let model):
+//                    complation(model)
+//                case .failure(let err):
+//                    print("AF_Exit \(err)")
+//                }
+//            }
+//        }
 
     }
 }

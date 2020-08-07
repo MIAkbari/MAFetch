@@ -23,8 +23,8 @@ class ViewController: UIViewController {
     
     func fetchData() {
         
-        APIClient.state.state { model in
-            print("model:\(model)")
+        APIClient.fetchState { model in
+            print(model)
         }
         
     }
