@@ -27,6 +27,19 @@ Below you can find a sample code of the api usage.
 
 ```swift
 
+// MARK: - Welcome
+struct Welcome: Codable {
+    let message: Message
+    let data: [String]
+}
+
+// MARK: - Message
+struct Message: Codable {
+    let status: Int
+    let text: String
+}
+
+
 extension APIClient {
     
     @Fetch<Welcome>(BaseURL.defults.base,method:.get)
