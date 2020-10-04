@@ -11,8 +11,7 @@ import Foundation
 
 class BaseURL {
     
-    static let defult = BaseURL()
-    
+    static let defults = BaseURL()
     //
     let base = "https://fabrica-api.sadeghmohebbi.ir"
 }

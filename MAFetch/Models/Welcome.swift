@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxSwift
 
 // MARK: - Welcome
 struct Welcome: Codable {
@@ -19,4 +20,3 @@ struct Message: Codable {
     let status: Int
     let text: String
 }
-

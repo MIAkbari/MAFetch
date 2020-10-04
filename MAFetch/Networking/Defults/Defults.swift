@@ -7,24 +7,35 @@
 //
 
 import Foundation
-
+import RxSwift
+import RxCocoa
 
 
 
 extension APIClient {
     
-    class instance {
+    
+    func state(complation:@escaping (Welcome)->Void) {
+        APIClient.$fetchState
+            .set(path: "/cities/state")
         
-//        class func state(complation:@escaping (Welcome)->Void) {
-//            APIClient.fetchState { result in
-//                switch result {
-//                case .success(let model):
-//                    complation(model)
-//                case .failure(let err):
-//                    print("AF_Exit \(err)")
-//                }
-//            }
-//        }
-
+        APIClient.fetchState { model in
+            complation(model)
+        }
     }
+    
+    
+    func postState(id:Int,complation:@escaping (Welcome)->Void) {
+        APIClient.$fetchStatePost
+            .set(path: "/cities/post/state")
+            .set(headers: ["ApplicationJson":"ContentType"])
+            .set(parameters: .body(["name":id])) // with URL and Form
+        
+        APIClient.fetchStatePost { model in
+            complation(model)
+        }
+    }
+    
+   
+    
 }
