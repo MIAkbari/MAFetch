@@ -119,4 +119,4 @@ MIAkbari, akbari4mb@gmail.com
 
 ## License
 
-MAKit is available under the MIT license. See the LICENSE file for more info.
+MAFetch is available under the MIT license. See the LICENSE file for more info.
