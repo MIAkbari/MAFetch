@@ -1,9 +1,7 @@
 # MAFetch
 
 ![Build iOS](https://github.com/chicio/ID3TagEditor/workflows/Build%20iOS/badge.svg)
-
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/chicio/ID3TagEditor/master/LICENSE.md)
-
 [![Platform](https://img.shields.io/cocoapods/p/MAKit.svg?style=flat)](https://cocoapods.org/pods/MAKit)
 
 <li><img src="https://files.virgool.io/upload/users/6345/posts/wv8hmp6rnx2a/jjm22t1chsk9.jpeg" alt="one"/></li>
